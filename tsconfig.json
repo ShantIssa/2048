@@ -1,0 +1,18 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "useUnknownInCatchVariables": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+      "paths": {
+        "@components": ["./src/app/components"],
+        "@hooks": ["./src/app/hooks"]
+
+      }
+  },
+  "include": ["src/**/*", "declarations/*.d.ts", "app.config.js", "configs/jest/jest-setup.config.js"]
+}

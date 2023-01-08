@@ -6,6 +6,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "packagerOpts": {
+      "sourceExts": [ "js", "json", "ts", "tsx", "jsx", "vue"]
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -18,16 +21,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }
