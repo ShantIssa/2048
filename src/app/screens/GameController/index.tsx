@@ -1,4 +1,4 @@
-import { Alert, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import GestureRecognizer from 'react-native-swipe-detect';
 
@@ -86,29 +86,52 @@ const GameController = () => {
 		velocityThreshold: 0.3,
 		directionalOffsetThreshold: 80,
 	};
+	function sum_array(arr: number[][]) {
+		// store our final answer
+		let sum = 0;
 
+		// loop through entire array
+		for (let i = 0; i < arr.length; i++) {
+			// loop through each inner array
+			for (let j = 0; j < arr[i].length; j++) {
+				// add this number to the current final sum
+				sum += arr[i][j];
+			}
+		}
+
+		return sum;
+	}
 	return (
-		<View style={styles.wrapper}>
-			<GestureRecognizer
-				config={config}
-				onSwipeUp={onSwipeUp}
-				onSwipeDown={onSwipeDown}
-				onSwipeLeft={onSwipeLeft}
-				onSwipeRight={onSwipeRight}
-			>
-				<View style={{ flex: 1 }}>
-					{board.map((row, i) => {
-						return (
-							<View key={`row-${i}`} style={{ width: '100%', flexDirection: 'row' }}>
-								{row.map((cell: number, j: number) => (
-									<Cell key={`cell-${i}-${j}`} number={cell} />
-								))}
-							</View>
-						);
-					})}
-				</View>
-			</GestureRecognizer>
-		</View>
+		<>
+			<Text style={{ alignSelf: 'center', fontSize: 33, fontWeight: '700' }}>Score: {sum_array(board)}</Text>
+			<View style={styles.wrapper}>
+				<GestureRecognizer
+					config={config}
+					onSwipeUp={onSwipeUp}
+					onSwipeDown={onSwipeDown}
+					onSwipeLeft={onSwipeLeft}
+					onSwipeRight={onSwipeRight}
+				>
+					<View style={{ backgroundColor: '#f3f3f3', borderRadius: 5, padding: 10 }}>
+						{board.map((row, i) => {
+							return (
+								<View
+									key={`row-${i}`}
+									style={{
+										width: '100%',
+										flexDirection: 'row',
+									}}
+								>
+									{row.map((cell: number, j: number) => (
+										<Cell key={`cell-${i}-${j}`} number={cell} />
+									))}
+								</View>
+							);
+						})}
+					</View>
+				</GestureRecognizer>
+			</View>
+		</>
 	);
 };
 
