@@ -1,6 +1,6 @@
 import useIsFull from './useIsFull';
 
-const matrixLength = 4;
+export const matrixLength = 4;
 
 const getRandomPosition = () => {
 	const rowPosition = Math.floor(Math.random() * matrixLength);

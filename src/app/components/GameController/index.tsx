@@ -15,6 +15,7 @@ import {
 
 import { useStyles } from './GameController.useStyles';
 import Cell from '../Cell';
+import useAreMatrixesIdentical from '../../hooks/useAreMatrixesIdentical';
 
 const GameController = () => {
 	const { styles } = useStyles();
@@ -30,26 +31,34 @@ const GameController = () => {
 
 	const onSwipeLeft = () => {
 		const newBoard = useMoveLeft(board);
-		updateBoard(useGenerateValue(newBoard));
-		checkEndGame();
+		if (!useAreMatrixesIdentical(newBoard, board as number[][])) {
+			updateBoard(useGenerateValue(newBoard));
+			checkEndGame();
+		}
 	};
 
 	const onSwipeRight = () => {
 		const newBoard = useMoveRight(board);
-		updateBoard(useGenerateValue(newBoard));
-		checkEndGame();
+		if (!useAreMatrixesIdentical(newBoard, board as number[][])) {
+			updateBoard(useGenerateValue(newBoard));
+			checkEndGame();
+		}
 	};
 
 	const onSwipeUp = () => {
 		const newBoard = useMoveUp(board);
-		updateBoard(useGenerateValue(newBoard));
-		checkEndGame();
+		if (!useAreMatrixesIdentical(newBoard, board as number[][])) {
+			updateBoard(useGenerateValue(newBoard));
+			checkEndGame();
+		}
 	};
 
 	const onSwipeDown = () => {
 		const newBoard = useMoveDown(board);
-		updateBoard(useGenerateValue(newBoard));
-		checkEndGame();
+		if (!useAreMatrixesIdentical(newBoard, board as number[][])) {
+			updateBoard(useGenerateValue(newBoard));
+			checkEndGame();
+		}
 	};
 	const config = {
 		velocityThreshold: 0.3,

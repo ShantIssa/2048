@@ -2,10 +2,15 @@ import { StyleSheet } from 'react-native';
 
 export function useStyles() {
 	const styles = StyleSheet.create({
-		wrapper: {
-			alignItems: 'center',
+		cell: {
 			justifyContent: 'center',
-			top: '50%',
+			alignItems: 'center',
+			width: 70,
+			height: 70,
+		},
+		text: {
+			color: 'black',
+			fontSize: 35,
 		},
 	});
 
