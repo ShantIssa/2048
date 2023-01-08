@@ -1,37 +1,59 @@
-import { View } from 'react-native';
-import React, { useState } from 'react';
+import { Alert, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import GestureRecognizer from 'react-native-swipe-detect';
 
+import { Cell } from '@components';
 import {
-	useCheckIsOver,
+	useMoveUp,
 	useCheckWin,
-	useEmptyBoard,
-	useGenerateValue,
 	useMoveDown,
 	useMoveLeft,
 	useMoveRight,
-	useMoveUp,
+	useEmptyBoard,
+	useCheckIsOver,
+	useGenerateValue,
+	useAreMatricesIdentical,
 } from '@hooks';
 
 import { useStyles } from './GameController.useStyles';
-import Cell from '../Cell';
-import useAreMatrixesIdentical from '../../hooks/useAreMatrixesIdentical';
 
 const GameController = () => {
 	const { styles } = useStyles();
-	const [board, updateBoard] = useState<string | any[]>(useGenerateValue(useEmptyBoard()));
+	const [board, updateBoard] = useState<number[][]>(useGenerateValue(useEmptyBoard()) as number[][]);
+
+	useEffect(() => {
+		checkEndGame();
+	});
 
 	const checkEndGame = () => {
 		if (useCheckWin(board)) {
-			console.warn('You win!');
-		} else if (useCheckIsOver(board)) {
-			console.warn('Game over!');
+			Alert.alert('You Won!', '', [
+				{
+					text: 'Start Again',
+					onPress: () => updateBoard(useGenerateValue(useEmptyBoard())),
+					style: 'destructive',
+				},
+				{
+					text: 'Keep Going',
+					onPress: () => null,
+					style: 'cancel',
+				},
+			]);
+		}
+		if (useCheckIsOver(board)) {
+			Alert.alert('Game Over', 'No where to move', [
+				{
+					text: 'Try Again',
+					onPress: () => updateBoard(useGenerateValue(useEmptyBoard())),
+					style: 'destructive',
+				},
+			]);
 		}
 	};
 
 	const onSwipeLeft = () => {
 		const newBoard = useMoveLeft(board);
-		if (!useAreMatrixesIdentical(newBoard, board as number[][])) {
+		if (!useAreMatricesIdentical(newBoard, board as number[][])) {
 			updateBoard(useGenerateValue(newBoard));
 			checkEndGame();
 		}
@@ -39,7 +61,7 @@ const GameController = () => {
 
 	const onSwipeRight = () => {
 		const newBoard = useMoveRight(board);
-		if (!useAreMatrixesIdentical(newBoard, board as number[][])) {
+		if (!useAreMatricesIdentical(newBoard, board as number[][])) {
 			updateBoard(useGenerateValue(newBoard));
 			checkEndGame();
 		}
@@ -47,7 +69,7 @@ const GameController = () => {
 
 	const onSwipeUp = () => {
 		const newBoard = useMoveUp(board);
-		if (!useAreMatrixesIdentical(newBoard, board as number[][])) {
+		if (!useAreMatricesIdentical(newBoard, board as number[][])) {
 			updateBoard(useGenerateValue(newBoard));
 			checkEndGame();
 		}
@@ -55,7 +77,7 @@ const GameController = () => {
 
 	const onSwipeDown = () => {
 		const newBoard = useMoveDown(board);
-		if (!useAreMatrixesIdentical(newBoard, board as number[][])) {
+		if (!useAreMatricesIdentical(newBoard, board as number[][])) {
 			updateBoard(useGenerateValue(newBoard));
 			checkEndGame();
 		}
@@ -74,8 +96,8 @@ const GameController = () => {
 				onSwipeLeft={onSwipeLeft}
 				onSwipeRight={onSwipeRight}
 			>
-				{Array.isArray(board) &&
-					board.map((row, i) => {
+				<View style={{ flex: 1 }}>
+					{board.map((row, i) => {
 						return (
 							<View key={`row-${i}`} style={{ width: '100%', flexDirection: 'row' }}>
 								{row.map((cell: number, j: number) => (
@@ -84,6 +106,7 @@ const GameController = () => {
 							</View>
 						);
 					})}
+				</View>
 			</GestureRecognizer>
 		</View>
 	);

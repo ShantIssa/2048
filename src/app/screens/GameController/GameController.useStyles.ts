@@ -5,7 +5,6 @@ export function useStyles() {
 		wrapper: {
 			alignItems: 'center',
 			justifyContent: 'center',
-			top: '50%',
 		},
 	});
 

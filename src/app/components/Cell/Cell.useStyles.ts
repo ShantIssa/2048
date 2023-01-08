@@ -7,10 +7,11 @@ export function useStyles() {
 			alignItems: 'center',
 			width: 70,
 			height: 70,
+			borderWidth: 1,
 		},
 		text: {
 			color: 'black',
-			fontSize: 35,
+			fontSize: 40,
 		},
 	});
 

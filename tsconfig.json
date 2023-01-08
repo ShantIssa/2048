@@ -10,7 +10,9 @@
     "baseUrl": ".",
       "paths": {
         "@components": ["./src/app/components"],
-        "@hooks": ["./src/app/hooks"]
+        "@hooks": ["./src/app/hooks"],
+        "@screens": ["./src/app/screens"]
+
 
       }
   },

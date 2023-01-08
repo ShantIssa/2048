@@ -13,4 +13,4 @@ export { default as useMoveRight } from './useMoveRight';
 export { default as useEmptyBoard } from './useEmptyBoard';
 export { default as useCheckIsOver } from './useCheckIsOver';
 export { default as useGenerateValue } from './useGenerateValue';
-export { default as useAreMatrixesIdentical } from './useAreMatrixesIdentical';
+export { default as useAreMatricesIdentical } from './useAreMatricesIdentical';
