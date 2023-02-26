@@ -1,3 +1,5 @@
+<img width="369" alt="image" src="https://user-images.githubusercontent.com/58706287/221415607-1c6f4590-ecf5-495f-851c-331648243d81.png">
+
 # 2048 Game
 2048 is a popular single-player sliding block puzzle game. The objective of the game is to slide numbered tiles on a grid to combine them and create a tile with the number 2048.
 
